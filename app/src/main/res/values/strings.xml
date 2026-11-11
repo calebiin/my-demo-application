@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">My Demo Application</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="name_hint">Escribe un texto</string>
+    <string name="greet_button">Saludar</string>
+    <string name="greeting_with_name">Hola %1$s!</string>
 </resources>
