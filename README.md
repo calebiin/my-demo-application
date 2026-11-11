@@ -1,6 +1,6 @@
-# checador-android-app
+# my-demo-application
 
-App Android del checador.
+App Android para experimentar.
 
 ## Dispositivo
 
