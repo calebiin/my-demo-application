@@ -14,7 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun HomeScreen(onOpenPractica01: () -> Unit) {
+fun HomeScreen(
+    onOpenPractica02: () -> Unit,
+    onOpenPractica01: () -> Unit,
+) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -27,6 +30,12 @@ fun HomeScreen(onOpenPractica01: () -> Unit) {
                 text = "Prácticas",
                 style = MaterialTheme.typography.headlineSmall
             )
+            Button(
+                onClick = onOpenPractica02,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Practica 02 - Calculadora")
+            }
             Button(
                 onClick = onOpenPractica01,
                 modifier = Modifier.fillMaxWidth()

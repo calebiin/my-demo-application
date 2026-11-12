@@ -2,6 +2,7 @@ package com.example.mydemoapplication
 
 import android.net.Uri
 import androidx.compose.runtime.Composable
+import com.example.mydemoapplication.practica02.CalculatorScreen
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,9 +18,14 @@ fun AppNavigator() {
         startDestination = "home"
     ) {
         composable("home") {
-            HomeScreen(onOpenPractica01 = {
-                navController.navigate("first_screen")
-            })
+            HomeScreen(
+                onOpenPractica02 = { navController.navigate("practica02") },
+                onOpenPractica01 = { navController.navigate("first_screen") }
+            )
+        }
+
+        composable("practica02") {
+            CalculatorScreen()
         }
 
         composable("first_screen") {
