@@ -30,14 +30,14 @@ import coil.compose.AsyncImage
 fun GaleriaScreen() {
     // Lista de URLs de imágenes de prueba
     val imagenes = listOf(
-        "https://picsum.photos/id/1016/400/400",
-        "https://picsum.photos/id/1015/400/400",
-        "https://picsum.photos/id/1019/400/400",
-        "https://picsum.photos/id/1018/400/400",
-        "https://picsum.photos/id/1021/400/400",
-        "https://picsum.photos/id/1022/400/400",
-        "https://picsum.photos/id/1023/400/400",
-        "https://picsum.photos/id/1024/400/400"
+        "https://images.pexels.com/photos/1170986/pexels-photo-1170986.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/2295744/pexels-photo-2295744.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/792381/pexels-photo-792381.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/133394/pexels-photo-133394.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/1661179/pexels-photo-1661179.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800",
+        "https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=800"
     )
 
     var imagenSeleccionada by remember { mutableStateOf<String?>(null) }
@@ -54,7 +54,9 @@ fun GaleriaScreen() {
                     model = url,
                     contentDescription = "Imagen ampliada",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
                 )
             }
         }
@@ -77,7 +79,7 @@ fun GaleriaScreen() {
             columns = GridCells.Fixed(2), // Indicamos que queremos 2 columnas
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.weight(1f)
         ) {
             items(imagenes) { url ->
                 ImagenItem(
@@ -104,7 +106,9 @@ fun ImagenItem(url: String, onClick: () -> Unit) {
             model = url,
             contentDescription = "Imagen de la galería",
             contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f)
         )
     }
 }
