@@ -8,6 +8,7 @@ import com.example.mydemoapplication.practica01.Practica01Nav
 import com.example.mydemoapplication.practica02.CalculatorScreen
 import com.example.mydemoapplication.practica03.MainScreen
 import com.example.mydemoapplication.practica04.FormScreen
+import com.example.mydemoapplication.practica05.FormScreen as SettingsScreen
 
 @Composable
 fun AppNavigator() {
@@ -19,11 +20,16 @@ fun AppNavigator() {
     ) {
         composable("home") {
             HomeScreen(
+                onOpenPractica05 = { navController.navigate("practica05") },
                 onOpenPractica04 = { navController.navigate("practica04") },
                 onOpenPractica03 = { navController.navigate("practica03") },
                 onOpenPractica02 = { navController.navigate("practica02") },
                 onOpenPractica01 = { navController.navigate("practica01") }
             )
+        }
+
+        composable("practica05") {
+            SettingsScreen()
         }
 
         composable("practica04") {

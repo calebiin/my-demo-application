@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(
+    onOpenPractica05: () -> Unit,
     onOpenPractica04: () -> Unit,
     onOpenPractica03: () -> Unit,
     onOpenPractica02: () -> Unit,
@@ -32,6 +33,12 @@ fun HomeScreen(
                 text = "Prácticas",
                 style = MaterialTheme.typography.headlineSmall
             )
+            Button(
+                onClick = onOpenPractica05,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("P05: Configuración")
+            }
             Button(
                 onClick = onOpenPractica04,
                 modifier = Modifier.fillMaxWidth()
