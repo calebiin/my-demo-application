@@ -1,6 +1,8 @@
 package com.example.mydemoapplication.practica06
 
+import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,9 +45,19 @@ fun ListaScreen() {
 
 @Composable
 fun ContactoItem(contacto: Contacto) {
+    val context = LocalContext.current
+
     // Usamos Card para mostrar los datos de la lista
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                Toast.makeText(
+                    context,
+                    "Seleccionaste a ${contacto.nombre}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(12.dp)
     ) {
