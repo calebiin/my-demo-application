@@ -14,8 +14,14 @@ fun AppNavigator() {
 
     NavHost(
         navController = navController,
-        startDestination = "first_screen"
+        startDestination = "home"
     ) {
+        composable("home") {
+            HomeScreen(onOpenPractica01 = {
+                navController.navigate("first_screen")
+            })
+        }
+
         composable("first_screen") {
             FirstScreen(onNavigateToSecondScreen = { texto ->
                 navController.navigate("second_screen/${Uri.encode(texto)}")
