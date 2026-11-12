@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -136,6 +137,17 @@ fun ReproductorScreen() {
                     }
                 ) {
                     Icon(Icons.Default.Pause, contentDescription = "Pausar")
+                }
+                FloatingActionButton(
+                    onClick = {
+                        if (mediaPlayer != null) {
+                            mediaPlayer?.pause()
+                            isPlaying = false
+                            mediaPlayer?.seekTo(0)
+                        }
+                    }
+                ) {
+                    Icon(Icons.Default.Stop, contentDescription = "Detener")
                 }
             }
         }
