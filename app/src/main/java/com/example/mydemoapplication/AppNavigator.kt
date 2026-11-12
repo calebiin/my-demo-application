@@ -1,13 +1,11 @@
 package com.example.mydemoapplication
 
-import android.net.Uri
 import androidx.compose.runtime.Composable
-import com.example.mydemoapplication.practica02.CalculatorScreen
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
+import com.example.mydemoapplication.practica01.Practica01Nav
+import com.example.mydemoapplication.practica02.CalculatorScreen
 
 @Composable
 fun AppNavigator() {
@@ -20,7 +18,7 @@ fun AppNavigator() {
         composable("home") {
             HomeScreen(
                 onOpenPractica02 = { navController.navigate("practica02") },
-                onOpenPractica01 = { navController.navigate("first_screen") }
+                onOpenPractica01 = { navController.navigate("practica01") }
             )
         }
 
@@ -28,21 +26,8 @@ fun AppNavigator() {
             CalculatorScreen()
         }
 
-        composable("first_screen") {
-            FirstScreen(onNavigateToSecondScreen = { texto ->
-                navController.navigate("second_screen/${Uri.encode(texto)}")
-            })
-        }
-
-        composable(
-            route = "second_screen/{texto}",
-            arguments = listOf(navArgument("texto") { type = NavType.StringType })
-        ) { backStackEntry ->
-            val textoRecibido = backStackEntry.arguments?.getString("texto") ?: ""
-            SecondScreen(
-                mensaje = textoRecibido,
-                onBack = { navController.popBackStack() }
-            )
+        composable("practica01") {
+            Practica01Nav()
         }
     }
 }
