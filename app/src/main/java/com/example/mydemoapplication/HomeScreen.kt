@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(
+    onOpenPractica06: () -> Unit,
     onOpenPractica05: () -> Unit,
     onOpenPractica04: () -> Unit,
     onOpenPractica03: () -> Unit,
@@ -33,6 +34,12 @@ fun HomeScreen(
                 text = "Prácticas",
                 style = MaterialTheme.typography.headlineSmall
             )
+            Button(
+                onClick = onOpenPractica06,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("P06: Listas dinámicas")
+            }
             Button(
                 onClick = onOpenPractica05,
                 modifier = Modifier.fillMaxWidth()
