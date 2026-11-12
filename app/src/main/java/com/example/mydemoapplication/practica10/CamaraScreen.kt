@@ -1,5 +1,7 @@
 package com.example.mydemoapplication.practica10
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,6 +29,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,6 +43,8 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CamaraScreen() {
+    val context = LocalContext.current
+
     // Lista observable de imágenes (Bitmaps)
     var listaImagenes by remember { mutableStateOf(listOf<Bitmap>()) }
 
@@ -48,6 +54,14 @@ fun CamaraScreen() {
     ) { bitmap: Bitmap? ->
         if (bitmap != null) {
             listaImagenes = listaImagenes + bitmap
+        }
+    }
+
+    val permisoLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { concedido ->
+        if (concedido) {
+            camaraLauncher.launch(null)
         }
     }
 
@@ -63,8 +77,15 @@ fun CamaraScreen() {
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    // Al presionar, lanzamos la petición de cámara
-                    camaraLauncher.launch(null)
+                    val tienePermiso = ContextCompat.checkSelfPermission(
+                        context,
+                        Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED
+                    if (tienePermiso) {
+                        camaraLauncher.launch(null)
+                    } else {
+                        permisoLauncher.launch(Manifest.permission.CAMERA)
+                    }
                 }
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Tomar Foto")
